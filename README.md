@@ -1,4 +1,4 @@
-# Mutation testing: the superpower everyone has
+# Mutation testing: the superpower you always had but didn't know about
 
 # THIS IS A DRAFT!
 
