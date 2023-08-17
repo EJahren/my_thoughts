@@ -16,25 +16,16 @@ this practice. But beware!
 > “Use Testing to Develop Better Software Faster”
 > medium.com/97-things/use-testing-to-develop-better-software-faster-9dd2616543d3
 
-The problem: we aren't applying the red part of red, green, refactor. There is no
-bookkeeping which ensures the test guards against some failure. This is easily remedied
-and the solution is called [mutation testing](https://en.wikipedia.org/wiki/Mutation_testing).
+The problem: we aren't applying the red part of red, green, refactor. There is
+no bookkeeping which ensures the test guards against some failure. But we can
+easily check that. Edit the program so that it is incorrect and see if the test
+fails. This analysis has been given many names, G. M. Weinberg called it
+"bebugging" in "The pshychology of Computer Programming" (1970). In more
+general terms we may call it [fault injection](https://en.wikipedia.org/wiki/Fault_injection),
+but a more consise and contemporary description of this practice is called
+[mutation testing](https://en.wikipedia.org/wiki/Mutation_testing).
 
-So what are the things we want to achieve by applying TDD?
-
-* All of the code is designed to be testable
-* Every requirement has a test and all code is needed for a requirement
-* All tests can fail for some incorrect version of the code
-
-These are certainly great goals and TDD is a really efficient way of
-getting there. It's like buying the groceries on the way home from work;
-you save yourself two trips.
-
-That being said, we really want it to do at least one more thing:
-
-* There should be enough test cases to avoid bugs
-
-Oh yea, right... So let's take a truly toy example borrowed from [Kevlin
+So let's take a truly toy example borrowed from [Kevlin
 Henney's "structure and interpretation of test
 cases"](https://www.youtube.com/watch?v=MWsk1h8pv2Q&t=892s). Let's implement
 is_leap_year in python.
@@ -137,13 +128,35 @@ def test_that_years_divisible_by_4_and_not_by_100_are_leap_years(year):
 ```
 
 
+## Why didn't my TDD discover the hidden test case?
 
+Arguably, I made a mistake by not creating the following
+function first:
 
-Here is a workflow I have recently started using for legacy code before
-refactoring, inspired by [mutation testing](https://en.wikipedia.org/wiki/Mutation_testing):
+```python
+def is_leap_year(year: int) -> bool:
+    return False
+```
 
-1. Create a mutant of the code (preferably one with very undesired behavior. Be creative!)
-1. If the tests fail: the confidence that refactoring is safe increases
-1. else: add a test that *kills the mutant*! If little is known about the requirements of the program
-    then use a snapshot test.
-1. Use source control to remove the mutant
+And then running the tests to check that they were still red.
+To be honest, I genuinly did not realise that constant False
+passed the test the first time I implemented that function.
+
+I don't think anyone would suggest that we throw away the code
+and start implementing from scratch. Fundamentally, we are not
+trying to ensure that "good TDD practice was observed", what we
+actually want out of the process is that:
+
+* All of the code is designed to be testable
+* Every requirement has a test and all code is needed for a requirement
+* All tests can fail for some incorrect version of the code
+
+These are certainly great goals and TDD is a really efficient way of getting
+there. It's like buying the groceries on the way home from work; you save
+yourself two trips. That being said, we really want it to do at least one more
+thing:
+
+* There should be enough test cases to avoid bugs
+
+As has been repeated ad nauseum, testing cannot prove the absense of bugs,
+but at least it shouldn't be too easy to imagine bugs that are not caught.
