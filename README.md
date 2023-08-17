@@ -17,7 +17,8 @@ this practice. But beware!
 > medium.com/97-things/use-testing-to-develop-better-software-faster-9dd2616543d3
 
 The problem: we aren't applying the red part of red, green, refactor. There is no
-bookkeeping which ensures the test guards against some failure.
+bookkeeping which ensures the test guards against some failure. This is easily remedied
+and the solution is called [mutation testing](https://en.wikipedia.org/wiki/Mutation_testing).
 
 So what are the things we want to achieve by applying TDD?
 
@@ -146,5 +147,3 @@ refactoring, inspired by [mutation testing](https://en.wikipedia.org/wiki/Mutati
 1. else: add a test that *kills the mutant*! If little is known about the requirements of the program
     then use a snapshot test.
 1. Use source control to remove the mutant
-
-We will have a look at some examples
