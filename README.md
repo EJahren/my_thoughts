@@ -2,28 +2,35 @@
 
 # THIS IS A DRAFT!
 
-I am by no means a TDD guru, but I am a believer. That being said, I find it
-problematic to apply an all or nothing approach towards it. For instance, what
-do you do if you are working on 30 year old code, which was definitely *not*
-developed with TDD? Is the code irredeemable? Of course not! As Michael
-Feathers excellent book "working with legacy software" prescribes, we add
-tests and then start refactoring. I have not heard any TDD proponent oppose
-this practice. But beware!
+When do you know whether you have added sufficient amount of
+test cases? Perhaps you use TDD and stop once the feature,
+is completed, but then are you really sure that those are all
+the cases? Also, there is no lasting proof that TDD was
+applied, so how can your coworkers verify that there are arr sufficient
+tests? Perhaps you aim for high line coverage? Indeed, uncovered code nearly
+always signals missing test cases, but 100% coverage does not mean no missing
+test cases.
+
+I have found, again and again, that [mutation testing](https://en.wikipedia.org/wiki/Mutation_testing) is an invaluable tool to uncover gaps in test coverage (which often leads to discovering bugs),
+and faulty error handling. You can use tools such as [mutmut](pypi.org/mutmut]
+which apply the technique automatically using a fixed set of patterns
+(change +1 to -1, mangle strings, etc.) to create "mutants" from, but
+performing the steps manually means you can
+be more creative with your mutants. In essence, mutation testing is just
+the pragmatic application of the following advice:
+
 
 > Never trust a test you haven't seen fail
->
+>https://youtu.be/kTcDBYCpj7Q
 > Marit van Dijk
 > “Use Testing to Develop Better Software Faster”
 > medium.com/97-things/use-testing-to-develop-better-software-faster-9dd2616543d3
 
-The problem: we aren't applying the red part of red, green, refactor. There is
-no bookkeeping which ensures the test guards against some failure. But we can
-easily check that. Edit the program so that it is incorrect and see if the test
-fails. This analysis has been given many names, G. M. Weinberg called it
+This analysis has been given many names, G. M. Weinberg called it
 "bebugging" in "The pshychology of Computer Programming" (1970). In more
-general terms we may call it [fault injection](https://en.wikipedia.org/wiki/Fault_injection),
-but a more consise and contemporary description of this practice is called
-[mutation testing](https://en.wikipedia.org/wiki/Mutation_testing).
+general terms we may call it [fault injection](https://en.wikipedia.org/wiki/Fault_injection).
+Simply change the program slightly to a buggy mutant program and see if the tests fail. Mutants
+it passes the tests.
 
 So let's take a truly toy example borrowed from [Kevlin
 Henney's "structure and interpretation of test
