@@ -1,4 +1,7 @@
-# Mutation testing
+---
+layout: post
+title: Mutation testing
+---
 
 > Never trust a test you haven't seen fail  
 >
@@ -9,6 +12,8 @@
 Recently I dove back into mutation testing softare such as [mutmut](https://mutmut.readthedocs.io/en/latest/) and
 it really opened my eyes to how powerful, yet simple, fault injection is as a technique. The
 simple idea is to introduce some likely failure and observe the behavior of your system.
+
+<!--more-->
 
 I recently became aware of a project where authentication was disabled by
 mistake, meaning no credencials were necessary to access. There was tests for authentication,
