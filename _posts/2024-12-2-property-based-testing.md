@@ -115,7 +115,11 @@ The first rule we create is the one that registered a randomly generated user:
         assume(username not in self.registered)
 
         response = self.client.post(
-            "/auth/register", data={"username": username, "password": password}
+            "/auth/register",
+            data={
+                "username": username,
+                "password": password
+            }
         )
 
         assert response.status_code == 302
@@ -136,7 +140,8 @@ registered user. The easiest way to do that is to use the `data` strategy:
 ```python
     def registered_users(self, draw):
         assume(self.registered)
-        return list(self.registered.items())[draw(st.integers()) % len(self.registered)]
+        index = draw(st.integers())
+        return list(self.registered.items())[index % len(self.registered)]
 
     @precondition(lambda self: self.logged_in is None)
     @rule(data=st.data())
@@ -177,7 +182,13 @@ Logging out and posting follow very similar patterns:
 
     @rule(title=st.text(), body=st.text())
     def create(self, title, body):
-        response = self.client.post("/create", data={"title": title, "body": body})
+        response = self.client.post(
+            "/create",
+            data={
+                "title": title,
+                "body": body
+            }
+        )
 
         if self.logged_in is None:
             assert response.status_code == 302
