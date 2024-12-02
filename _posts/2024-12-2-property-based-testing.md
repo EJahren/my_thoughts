@@ -3,8 +3,7 @@ title: Using Model Based PBT to FUZZ a Web-API
 ---
 
 I was lucky enough to present at
-[[https://ndctechtown.com/agenda/omg-how-do-i-write-software-that-isnt-a-ticking-timebomb-09u2/0n60scjenit|NDC
-tech town]] this year, and I had a great time! I spoke about how our team uses
+[NDC tech town](https://ndctechtown.com/agenda/omg-how-do-i-write-software-that-isnt-a-ticking-timebomb-09u2/0n60scjenit) this year, and I had a great time! I spoke about how our team uses
 Property Based Testing (PBT) to find bugs before they create problems. While
 holding it I realised that the example of using stateful PBT
 (sometimes called model based testing) for testing a web api, probably worked better
