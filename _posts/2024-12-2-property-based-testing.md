@@ -10,7 +10,7 @@ holding it I realised that the example of using stateful PBT
 as a blog post than in a talk. So that is the topic of this blog post.
 
 First, what is PBT? I like to think of it as fuzzing for unit tests. There
-are several implementations for several languages (you can find a list [here](github.com/jmid/pbt-frameworks)!)
+are several implementations for several languages (you can find a list [here](https://github.com/jmid/pbt-frameworks)!)
 It usually consists of some library for creating generators for the data your
 application uses and a way to inject that test data into a test method which
 is ran several times. Here is an example using the PBT framework hypothesis for
